@@ -9,5 +9,5 @@ class User < ApplicationRecord
   validates :first_name_kanji,  presence: true
   validates :family_name_kana,  presence: true
   validates :first_name_kana,   presence: true
-  validates :birthday           presence: true
+  validates :birthday,          presence: true
 end
