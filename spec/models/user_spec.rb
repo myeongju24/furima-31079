@@ -94,6 +94,30 @@ describe User do
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
+
+      it "お名前名字（全角）が半角だと登録できない" do
+        @user.family_name_kanji = "ﾔﾏﾀﾞ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name kanji is invalid. Input full-width characters.")
+      end
+
+      it "お名前下の名前（全角）が半角だと登録できない" do
+        @user.first_name_kanji = "ﾀﾛｳ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kanji is invalid. Input full-width characters.")
+      end
+
+      it "お名前カナ名字（全角）が半角だと登録できない"do
+        @user.family_name_kana = "ﾔﾏﾀﾞ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name kana is invalid. Input full-width katakana characters.")
+      end
+
+      it "お名前カナ下の名前（全角）が半角だと登録できない" do
+        @user.first_name_kana = "ﾀﾛｳ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
+      end
     end
     
   end
