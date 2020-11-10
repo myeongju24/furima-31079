@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-<<<<<<< Updated upstream
-=======
+
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -15,6 +14,4 @@ class ApplicationController < ActionController::Base
       username == 'admin' && password == '2222'
     end
   end
-  
->>>>>>> Stashed changes
 end
