@@ -63,8 +63,14 @@ describe User do
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
       
-      it "パスワードは英数字混合じゃないといけない" do
+      it "パスワードは数字のみだと登録できない" do
         @user.password = "12345678"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+
+      it "パスワードは英字のみだと登録できない" do
+        @user.password = "abcdefgh"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
       end
