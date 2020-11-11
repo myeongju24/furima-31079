@@ -1,25 +1,65 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type     | Options     |
+| ------------------ | -------- | ----------- |
+| nickname           | string   | null: false |
+| email              | string   | null: false |
+| encrypted_password | string   | null: false |
+| family_name_kanji  | string   | null: false |
+| first_name_kanji   | string   | null: false |
+| family_name_kana   | string   | null: false |
+| family_name_kana   | string   | null: false |
+| birthday           | date     | null: false |
 
-* Ruby version
+### Association
 
+- has_many : items
+- has_many : records
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column             | Type       | Options           |
+| -------------------| ---------- | ----------------- |
+| title              | string     | null: false       |
+| explanation        | text       | null: false       |
+| category_id        | integer    | null: false       |
+| condition_id       | integer    | null: false       |
+| delivery_fee_id    | integer    | null: false       |
+| location_id        | integer    | null: false       |
+| price              | integer    | null: false       |
+| day_to_delivery_id | integer    | null: false       |
+| user               | references | foreign_key: true |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to : user
+- has_one    : record
 
-* How to run the test suite
+## address テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column        | Type       | Options           |
+| --------------| ---------- | ----------------- |
+| postal_code   | string     | null: false       |
+| prefucture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| street        | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| record        | references | foreign_key: true |
 
-* Deployment instructions
+### Association
+- belongs_to : record
 
-* ...
+## records テーブル
+
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
+
+### Association
+- belongs_to : user
+- belongs_to : item
+- has_one    : address
