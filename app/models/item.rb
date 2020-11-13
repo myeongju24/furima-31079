@@ -3,6 +3,7 @@ class Item < ApplicationRecord
     validates :title
     validates :explanation
     validates :price
+    validates :image, presence: true
   end
 
   belongs_to :user
