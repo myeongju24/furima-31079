@@ -1,9 +1,8 @@
 class Item < ApplicationRecord
   with_options presence: true do
+    validates :image
     validates :title
     validates :explanation
-    validates :price
-    validates :image, presence: true
   end
 
   belongs_to :user
@@ -21,4 +20,6 @@ class Item < ApplicationRecord
   validates :delivery_fee_id, numericality: { other_than: 1 }
   validates :location_id, numericality: { other_than: 1 }
   validates :day_to_delivery_id, numericality: { other_than: 1 }
+
+  validates :price, presence: true 
 end
