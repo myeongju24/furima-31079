@@ -1,6 +1,6 @@
-class FormOrder
+class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :street, :building, :phone_number,
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :street, :building, :phone_number
 
   # ここにバリデーションの処理を書く
   validates :postal_code, presence: true
@@ -10,7 +10,7 @@ class FormOrder
     validates :street
     validates :phone_number
   end
-  
+
   def save
     # 各テーブルにデータを保存する処理を書く
     Order.create(user_id: user_id, item_id: item_id)
