@@ -1,15 +1,26 @@
 class OrdersController < ApplicationController
 
   def index
+    @order_form = OrderForm.new
+  end
+
+  def new
+    @order_form = OrderForm.new
   end
 
   def create
-    Order.create(order_params)
+    @order_form = OrderForm.new(order_params)
+    if @order_form.valid?
+      @order_form.save
+      redirect_to root_path
+    else
+      render action: :index
+    end
   end
 
   private
   def order_params
-    params.permit(:user_id, :item_id, :postal_code, :prefecture_id, :city, :street, :building, :phone_number,)
+    params.require(:order_form).permit(:user_id, :item_id, :postal_code, :prefecture_id, :city, :street, :building, :phone_number)
   end
 
 end
