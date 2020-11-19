@@ -16,6 +16,6 @@ class OrderForm
   def save
     # 各テーブルにデータを保存する処理を書く
     order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create!(postal_code: postal_code, prefecture_id: prefecture_id, city: city, street: street, building: building, phone_number: phone_number, order_id: order.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, street: street, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
