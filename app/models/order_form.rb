@@ -9,6 +9,8 @@ class OrderForm
     validates :city
     validates :street
     validates :phone_number,length: { maximum: 11 }, format: {with: /\A[0-9]+\z/, message: "Input only number"}
+    validates :user_id
+    validates :item_id
   end
 
   validates :prefecture_id, numericality: { other_than: 1 }

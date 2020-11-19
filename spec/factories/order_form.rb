@@ -7,5 +7,7 @@ FactoryBot.define do
     street        {"三の丸 3-1-2"}
     building      {"愛知県庁"}
     phone_number  {"09056373939"}
+    user_id       {1}
+    item_id       {1}
   end
 end
