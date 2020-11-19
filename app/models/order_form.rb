@@ -3,12 +3,16 @@ class OrderForm
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :street, :building, :phone_number, :token
 
   # ここにバリデーションの処理を書く
-  validates :postal_code, presence: true
+  with_options presence: true do
+    validates :token
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+  end
+
   validates :prefecture_id, numericality: { other_than: 1 }
   with_options presence: true do
     validates :city
     validates :street
-    validates :phone_number
+    validates :phone_number, format: {with: /\A[0-9]+\z/, message: "Input only number"}
   end
 
   def save
