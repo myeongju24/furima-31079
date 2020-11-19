@@ -7,7 +7,7 @@ class Address < ApplicationRecord
     validates :street
     validates :phone_number, format: {with: /\A[0-9]+\z/, message: "Input only number"}
   end
-
+  
   belongs_to :order
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
