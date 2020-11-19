@@ -15,6 +15,7 @@ describe OrderForm do
       end
 
       it '建物名は空でも購入できる' do
+        @order_form.building = ""
         expect(@order_form).to be_valid
       end
     end
@@ -67,6 +68,12 @@ describe OrderForm do
         @order_form.phone_number = "090-1234-5678"
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number Input only number")
+      end
+
+      it '電話番号は11桁以内じゃないと購入できない' do
+        @order_form.phone_number = "090123456789"
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
 
     end
